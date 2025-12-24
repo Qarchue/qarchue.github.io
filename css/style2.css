@@ -1,0 +1,76 @@
+/* =========================================
+   Profile Section (個人介紹區)
+   ========================================= */
+
+#profile {
+    position: relative;
+    z-index: 10;
+    margin-top: 100vh;
+    
+    /* 改成黑色背景，配合你的設計風格 */
+    background-color: #000; 
+    color: #fff;
+    
+    min-height: 100vh;
+    /* 調整內距：上下寬鬆，左右集中 */
+    padding: 10em 15vw; 
+    box-sizing: border-box;
+    
+    /* 排版邏輯 */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 靠左對齊 */
+}
+
+/* 內容容器 */
+.content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* 標題跟內容的間距 */
+}
+
+/* --- 字體樣式 --- */
+
+/* "你好," 與 "我是..." */
+.greeting, .identity-group {
+    font-size: 4rem; /* 對應 size="9" */
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* 手機版字體縮小一點 */
+@media (max-width: 768px) {
+    .greeting, .identity-group {
+        font-size: 2.5rem;
+    }
+}
+
+/* 漸層文字核心代碼 */
+.gradient-text {
+    background-image: linear-gradient(45deg, #6500ff, #ff00ff); /* 你指定的紫色漸層 */
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    display: inline-block; /* 確保漸層正確顯示 */
+}
+
+/* 自我介紹文字段落 */
+.bio-text {
+    margin-top: 3rem; /* 與標題拉開距離 */
+    font-size: 1.5rem; /* 對應 size="6" */
+    color: lightgray;
+    line-height: 1.6;
+    max-width: 800px;
+}
+
+.bio-text p {
+    margin-bottom: 0.5rem;
+}
+
+/* Typed.js 的游標樣式 (讓它變紫色) */
+.typed-cursor {
+    color: #ff00ff; 
+    font-size: 4rem;
+    font-weight: 300;
+}

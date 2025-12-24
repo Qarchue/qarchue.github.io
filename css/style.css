@@ -35,7 +35,7 @@
     /* 視覺設定 */
     min-height: 100vh;
     padding: 5em 10vw;
-    background-color: #fff;
+    background-color: #201f1f;
     box-sizing: border-box;
 }
 
@@ -135,35 +135,3 @@
     margin: 0;
 }
 
-.gradient-text {
-    background-image: var(--accent-gradient);
-    background-clip: text;
-    -webkit-background-clip: text; /* Safari 兼容 */
-    color: transparent;
-}
-
-.description-text {
-    font-size: 1.5rem;
-    color: #d3d3d3; /* 改用 Hex 較簡潔 */
-    max-width: 600px;
-}
-
-.action-btn {
-    padding: 15px 40px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    
-    /* 外觀 */
-    background-color: #fff;
-    color: #000;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    
-    transition: transform 0.2s, background-color 0.2s;
-}
-
-.action-btn:hover {
-    transform: scale(1.05);
-    background-color: #f0f0f0;
-}

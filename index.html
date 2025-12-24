@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/style.css">
-    
+    <link rel="stylesheet" href="css/style2.css">
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/motion@10.18.0/dist/motion.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/type.js"></script>
 </head>
 <body>
 
@@ -21,24 +23,29 @@
             <source src="intro.mp4" type="video/mp4">
         </video>
 
-        <div id="hero-content" class="hero-content-overlay hidden">
-             <h1 class="heading-large">
-                <span class="gradient-text">text</span>
-            </h1>
-            <p class="description-text">
-                幹他媽的手尻html有夠他媽淚目
-            </p>
-            <button class="action-btn" onclick="scrollToProfile()">測試按鈕</button>
-        </div>
-
     </section>
 
+
     <main id="profile" class="profile-section">
-        <div class="vstack title-group">
-             <h1 class="heading-large">更多內容</h1>
-             <p>當你往下滑動時，上方的英雄區域已經變成靜態圖片背景了。</p>
-        </div>
-        <div style="height: 50vh;"></div> </main>
+            
+            <div class="content-container">
+                <h2 class="greeting">你好,</h2>
+                
+                <h2 class="identity-group">
+                    <span>我是</span>
+                    <span id="typed-output" class="gradient-text"></span>
+                    <span class="gradient-text">。</span>
+                </h2>
+
+                <div class="bio-text">
+                    <p>目前就讀於正修科技大學資訊工程系。</p>
+                    <p>熱衷於探索各種程式語言與技術，並將它們應用於實際專案中，</p>
+                    <p>我相信程式設計不僅是一種技能，更是一種創造力的展現。</p>
+                </div>
+            </div>
+
+            <div style="height: 50vh;"></div> 
+        </main>
 
     <script src="js/script.js"></script>
 </body>

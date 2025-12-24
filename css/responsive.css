@@ -1,0 +1,60 @@
+/* css/responsive.css */
+
+/* =========================================
+   RWD 響應式設計 (手機/平板專用設定)
+   ========================================= */
+
+/* 當螢幕寬度小於 768px (手機/平板直向) */
+@media (max-width: 768px) {
+
+    /* 1. 調整 Hero 影片大小：手機版改寬一點 */
+    .fullscreen-media {
+        width: 95%; 
+        height: 60vh; 
+        border-radius: 12px;
+    }
+
+    /* 2. 調整 Hero 文字與按鈕：縮小字體 */
+    .heading-large {
+        font-size: 3rem;
+    }
+    
+    .description-text {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+
+    .hero-content-overlay {
+        gap: 1rem;
+    }
+
+    /* 3. 調整 Profile 區塊：減少內距 */
+    #profile {
+        padding: 5em 20px; 
+    }
+
+    /* 4. 調整打字機標題：縮小並換行 */
+    .greeting, .identity-group {
+        font-size: 2.2rem;
+        display: flex;
+        flex-direction: column; /* 強制換行 */
+        align-items: flex-start;
+    }
+
+    .typed-cursor {
+        font-size: 2.2rem;
+    }
+
+    /* 5. 調整自我介紹內文 */
+    .bio-text {
+        font-size: 1.1rem;
+        margin-top: 2rem;
+    }
+}
+
+/* 修復手機網址列伸縮導致的高度跳動 */
+@supports (height: 100dvh) {
+    #hero, .fullscreen-media {
+        height: 100dvh;
+    }
+}

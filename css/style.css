@@ -13,7 +13,7 @@
     z-index: 1; /* 層級：位於 Profile 之下 */
 
     /* 視覺設定 */
-    background-color: #000;
+    background-color: #000000;
     overflow: hidden;
     will-change: opacity; /* 效能優化：告訴瀏覽器這會變動 */
 
@@ -35,7 +35,7 @@
     /* 視覺設定 */
     min-height: 100vh;
     padding: 5em 10vw;
-    background-color: #201f1f;
+    background-color: #000000;
     box-sizing: border-box;
 }
 

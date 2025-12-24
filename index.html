@@ -3,302 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>邱楷宸 - 個人網站</title>
+    <title>Qarchue - 個人作品集</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/style.css">
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/scottschiller/snowstorm@snowstorm_20131208/snowstorm-min.js"></script>
-
-    <style>
-        /* 2. CSS 樣式區域 (原本的 test.css 與 Reflex 樣式整合) */
-        
-        /* 基礎設定 */
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: system-ui, -apple-system, "微軟正黑體", "Microsoft JhengHei", sans-serif;
-            background-color: black;
-            color: white;
-            /* 初始狀態鎖定滾動，等影片播完才解鎖 */
-            overflow: hidden; 
-            scroll-behavior: smooth;
-        }
-
-        /* 佈局工具 (模仿 Reflex 的 vstack/hstack) */
-        .vstack {
-            display: flex;
-            flex-direction: column;
-        }
-        .hstack {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-        .center {
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* --- 開場影片區塊 (#splash-screen) --- */
-        #splash-screen {
-            position: fixed; /* 固定在螢幕上 */
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: black;
-            z-index: 9999; /* 確保在最上層 */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        #intro-video {
-            width: 50%;
-            height: auto;
-            border-radius: 15px;
-            object-fit: contain;
-            pointer-events: none; /* 禁止點擊影片 */
-        }
-
-        /* --- 主要內容區塊 (#main-content) --- */
-        #main-content {
-            min-height: 100vh;
-            padding: 5em 20vw; /* 上下 5em, 左右 20vw */
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 1.5rem; /* spacing="5" -> 約 1.5rem */
-            opacity: 1; /* 確保內容可見 */
-        }
-
-        h1 {
-            font-size: 4rem; /* size="9" */
-            margin: 0;
-            margin-bottom: 0.2em;
-            line-height: 1.2;
-        }
-
-        /* 漸層文字特效 */
-        .gradient-text {
-            background-image: linear-gradient(45deg, #6500ff, #ff00ff);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            font-weight: 500;
-        }
-
-        /* 打字機游標效果 */
-        .cursor {
-            display: inline-block;
-            width: 3px;
-            background-color: #ff00ff;
-            animation: blink 1s infinite;
-        }
-        @keyframes blink {
-            0% { opacity: 0; }
-            50% { opacity: 1; }
-            100% { opacity: 0; }
-        }
-
-        /* 文字描述樣式 */
-        .description {
-            font-size: 1.5rem; /* size="6" */
-            color: lightgray;
-            line-height: 1.6;
-            margin-top: 3em;
-            width: 80%;
-        }
-
-        /* --- 按鈕動畫 (Bounce me!) --- */
-        .bounce-btn {
-            background-color: #333;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .bounce-btn:hover {
-            transform: scale(1.2); /* while_hover */
-            background-color: #444;
-        }
-        .bounce-btn:active {
-            transform: scale(0.9); /* while_tap */
-        }
-
-        /* --- 滾動觸發動畫 (Scroll Reveal) --- */
-        /* 這裡用原生 CSS 模仿 trigger.js 的效果 */
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
-        .scroll-reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* 底部撐開空間 */
-        .spacer {
-            height: 200vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: start;
-            padding-top: 50px;
-        }
-
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/motion@10.18.0/dist/motion.js"></script>
+    <script src="js/script.js"></script>
 </head>
 <body>
 
-    <div id="splash-screen">
-        <video id="intro-video" autoplay muted playsinline>
+    <section id="hero" class="hero-section">
+        
+        <img id="hero-static-image" class="fullscreen-media" src="final-frame.png" alt="Hero Background">
+
+        <video id="hero-video" class="fullscreen-media" autoplay muted playsinline onended="onVideoEnded()">
             <source src="intro.mp4" type="video/mp4">
-            您的瀏覽器不支援影片標籤。
         </video>
-    </div>
 
-    <div id="main-content">
-        
-        <div class="vstack">
-            <h1>你好,</h1>
-            <div class="hstack" style="gap: 1rem; flex-wrap: wrap;">
-                <h1>我是</h1>
-                <h1>
-                    <span id="typewriter" class="gradient-text"></span><span class="cursor">|</span>。
-                </h1>
-            </div>
+        <div id="hero-content" class="hero-content-overlay hidden">
+             <h1 class="heading-large">
+                <span class="gradient-text">text</span>
+            </h1>
+            <p class="description-text">
+                幹他媽的手尻html有夠他媽淚目
+            </p>
+            <button class="action-btn" onclick="scrollToProfile()">測試按鈕</button>
         </div>
 
-        <div class="vstack description">
-            <p>目前就讀於正修科技大學資訊工程系。</p>
-            <p>熱衷於探索各種程式語言與技術，並將它們應用於實際專案中，</p>
-            <p>我相信程式設計不僅是一種技能，更是一種創造力的展現。</p>
+    </section>
+
+    <main id="profile" class="profile-section">
+        <div class="vstack title-group">
+             <h1 class="heading-large">更多內容</h1>
+             <p>當你往下滑動時，上方的英雄區域已經變成靜態圖片背景了。</p>
         </div>
+        <div style="height: 50vh;"></div> </main>
 
-    </div>
-
-    <div style="width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; background: black;">
-        <div class="vstack center">
-            <h1 style="color: white; margin-bottom: 20px;">載入中...</h1>
-            <button class="bounce-btn">Bounce me!</button>
-        </div>
-    </div>
-
-    <div class="spacer">
-        <h1 class="scroll-reveal">當我滾入時，我會產生位移動畫。</h1>
-        <br>
-        <h1 class="scroll-reveal" style="transition-delay: 0.2s;">當我滾入時，我會產生位移動畫 (延遲)。</h1>
-    </div>
-
-    <script>
-        // --- 設定下雪特效 ---
-        snowstorm.snowColor = '#ffffff'; 
-        snowstorm.flakesMaxActive = 96; 
-        snowstorm.useTwinkleEffect = true;
-
-        // --- 1. 影片結束後的滾動邏輯 (移植自 custom_scroll.js) ---
-        const video = document.getElementById('intro-video');
-        
-        // 當影片播放結束時
-        video.onended = function() {
-            // 延遲一點點再滾動，感覺比較順
-            setTimeout(() => {
-                triggerScroll();
-            }, 500); 
-        };
-
-        function triggerScroll() {
-            // 註冊 GSAP 插件
-            gsap.registerPlugin(ScrollToPlugin);
-
-            // 執行平滑滾動
-            gsap.to(window, {
-                duration: 1.5,
-                scrollTo: "#main-content",
-                ease: "power2.inOut",
-                onComplete: () => {
-                    // 滾動完成後，移除開場畫面
-                    const splash = document.getElementById('splash-screen');
-                    if (splash) {
-                        splash.remove();
-                    }
-                    
-                    // 重置滾動位置並解鎖滾動條
-                    window.scrollTo(0, 0);
-                    document.documentElement.style.overflow = 'auto';
-                    document.body.style.overflow = 'auto';
-                }
-            });
-        }
-
-        // --- 2. 打字機特效 (模擬 reflex_type_animation) ---
-        const textElement = document.getElementById('typewriter');
-        const phrases = ["一位大學生", "熱愛程式設計的開發者", "邱楷宸"];
-        const delays = [2000, 3000, 2000]; // 對應每個詞的停留時間
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let typeSpeed = 100;
-
-        function typeLoop() {
-            const currentPhrase = phrases[phraseIndex];
-            
-            if (isDeleting) {
-                // 刪除文字
-                textElement.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-                typeSpeed = 50; // 刪除速度較快
-            } else {
-                // 輸入文字
-                textElement.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
-                typeSpeed = 150; // 輸入速度正常
-            }
-
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                // 打完一句，準備停留
-                isDeleting = true;
-                typeSpeed = delays[phraseIndex]; // 停留時間
-            } else if (isDeleting && charIndex === 0) {
-                // 刪除完畢，切換下一句
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                typeSpeed = 500; // 換句前的短暫暫停
-            }
-
-            setTimeout(typeLoop, typeSpeed);
-        }
-        // 啟動打字機
-        document.addEventListener('DOMContentLoaded', typeLoop);
-
-
-        // --- 3. 滾動觸發動畫 (替代 Trigger.js) ---
-        // 使用 Intersection Observer API 來偵測元素是否進入畫面
-        const observerOptions = {
-            threshold: 0.1 // 當元素出現 10% 時觸發
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                } else {
-                    // 如果希望滾出去再滾回來還有動畫，把下面這行註解解開
-                    // entry.target.classList.remove('visible'); 
-                }
-            });
-        }, observerOptions);
-
-        // 監聽所有帶有 .scroll-reveal 的元素
-        document.querySelectorAll('.scroll-reveal').forEach((el) => {
-            observer.observe(el);
-        });
-
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>

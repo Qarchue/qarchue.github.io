@@ -1,0 +1,25 @@
+/* =========================================
+   1. CSS 變數定義
+   ========================================= */
+:root {
+    --bg-color: #000000;
+    --text-primary: #ffffff;
+    --accent-gradient: linear-gradient(45deg, #6500ff, #ff00ff);
+    --font-main: system-ui, -apple-system, "微軟正黑體", sans-serif;
+    --transition-speed: 1s; /* 轉場動畫速度 */
+}
+
+/* =========================================
+   2. 基礎設定
+   ========================================= */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    
+}

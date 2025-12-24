@@ -29,12 +29,12 @@
     }
 
     #hero-video {
-        width: 80%;
+        width: 100%;
         height: auto;
     }
 
     #hero-static-image {
-        width: 80%;
+        width: 100px;
         height: auto;
     }
     /* 讓 "我是" 自己變成一行 */

@@ -31,6 +31,7 @@
     -webkit-background-clip: text;
     color: transparent;
     display: inline-block;
+    font-size: 4rem;
 }
 
 .bio-text {
@@ -119,3 +120,29 @@
     transform: translateY(10px); transition: transform 0.3s ease 0.1s;
 }
 .grid-item:hover h2, .grid-item:hover span { transform: translateY(0); }
+
+
+
+
+.typed-cursor {
+    color: #ff00ff;   /* 紫色 (維持原樣) */
+    
+    /* ★關鍵：讓游標變小 */
+    /* 1em = 跟旁邊的字一樣大。設為 0.6em 就只會剩下 60% 大小 */
+    font-size: 1em; 
+
+    /* 讓游標變細一點 (100~900) */
+    font-weight: 100; 
+
+    /* 因為變小了，位置會跑掉，用這個把它「提」起來對齊文字中心 */
+    vertical-align: 10%; /* 可以微調這個趴數來對齊 */
+    
+    /* 讓它不要佔太多橫向空間，往左邊擠一點 */
+    margin-left: 1px; 
+}
+
+/* 針對 "identity-group" 裡面的最後一個 span (也就是那個句號) */
+.identity-group span:last-child {
+    /* 因為它是 inline-block，可能會被空白影響，確保它不要有多餘間距 */
+    margin-left: -0.2em;
+}

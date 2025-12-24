@@ -1,198 +1,121 @@
 /* =========================================
-   Profile Section (個人介紹區)
+   Profile 內容排版
    ========================================= */
-
 #profile {
-    position: relative;
-    z-index: 10;
-    margin-top: 100vh;
-    
-    /* 改成黑色背景，配合你的設計風格 */
-    background-color: #080808; 
+    /* 上下留白，左右集中 */
+    padding: 10em 10vw;
     color: #fff;
     
-    min-height: 100vh;
-    /* 調整內距：上下寬鬆，左右集中 */
-    padding: 10em 15vw; 
-    box-sizing: border-box;
-    
-    /* 排版邏輯 */
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* 靠左對齊 */
+    align-items: flex-start;
 }
 
-/* 內容容器 */
 .content-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem; /* 標題跟內容的間距 */
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto; /* 區塊居中 */
 }
 
-/* --- 字體樣式 --- */
-
-/* "你好," 與 "我是..." */
+/* 字體排版 */
 .greeting, .identity-group {
-    font-size: 4rem; /* 對應 size="9" */
+    font-size: 4rem;
     font-weight: 700;
     margin: 0;
     line-height: 1.2;
 }
 
-/* 手機版字體縮小一點 */
-@media (max-width: 768px) {
-    .greeting, .identity-group {
-        font-size: 2.5rem;
-    }
-}
-
-/* 漸層文字核心代碼 */
 .gradient-text {
-    background-image: linear-gradient(45deg, #6500ff, #ff00ff); /* 你指定的紫色漸層 */
+    background-image: var(--accent-gradient, linear-gradient(45deg, #6500ff, #ff00ff));
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
-    display: inline-block; /* 確保漸層正確顯示 */
+    display: inline-block;
 }
 
-/* 自我介紹文字段落 */
 .bio-text {
-    margin-top: 3rem; /* 與標題拉開距離 */
-    font-size: 1.5rem; /* 對應 size="6" */
-    color: lightgray;
-    line-height: 1.6;
-    max-width: 800px;
-}
-
-.bio-text p {
-    margin-bottom: 0.5rem;
-}
-
-/* Typed.js 的游標樣式 (讓它變紫色) */
-.typed-cursor {
-    color: #ff00ff; 
-    font-size: 4rem;
-    font-weight: 300;
+    margin-top: 3rem;
+    font-size: 1.5rem;
+    color: #cccccc;
+    line-height: 1.8;
 }
 
 /* =========================================
-   Strict Video Grid (動態正方形網格)
+   Bento Grid (格狀佈局)
    ========================================= */
-
 .grid-container {
     margin-top: 8rem;
     width: 100%;
-    max-width: 1400px; /* 可以寬一點，更有氣勢 */
+    max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
-    padding-bottom: 10rem;
+    padding-bottom: 5rem;
 }
 
 .video-grid {
     display: grid;
-    /* 切成 4 欄 */
-    grid-template-columns: repeat(4, 1fr); 
-    /* 格子間距 */
-    gap: 1.5rem; 
+    /* 桌面版預設：4 欄 */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    
+    /* 讓格子保持形狀的關鍵 */
+    grid-auto-flow: dense; 
 }
 
-/* --- 格子基礎設定 --- */
+/* 格子基本樣式 */
 .grid-item {
     position: relative;
     display: block;
     width: 100%;
-    border-radius: 0; /* 如果想要更像 azumbrunnen，可以把圓角拿掉或設很小 */
+    background-color: #111;
     overflow: hidden;
-    background-color: #111; /* 影片載入前的底色 */
     text-decoration: none;
+    /* 加上一點圓角更有現代感 */
+    border-radius: 12px; 
 }
 
-/* --- 關鍵：強制形狀 (Aspect Ratio) --- */
+/* 尺寸定義 */
+.box-1x1 { grid-column: span 1; aspect-ratio: 1 / 1; }
+.box-2x1 { grid-column: span 2; aspect-ratio: 2 / 1; }
+.box-2x2 { grid-column: span 2; grid-row: span 2; aspect-ratio: 1 / 1; }
 
-/* 1x1 正方形 */
-.box-1x1 {
-    grid-column: span 1;
-    aspect-ratio: 1 / 1; /* 寬高比 1:1 */
-}
-
-/* 2x1 寬長方形 */
-.box-2x1 {
-    grid-column: span 2;
-    aspect-ratio: 2 / 1; /* 寬高比 2:1 */
-}
-
-/* 2x2 大正方形 */
-.box-2x2 {
-    grid-column: span 2;
-    grid-row: span 2;
-    aspect-ratio: 1 / 1; /* 雖然跨兩欄，但整體還是正方形 */
-}
-
-/* --- 影片與圖片處理 --- */
+/* 內容填滿 */
 .grid-item video, 
-.grid-item img,
+.grid-item img, 
 .placeholder-bg {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* ★關鍵：確保影片填滿格子，不會變形 */
+    object-fit: cover;
     position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    transition: transform 0.5s ease;
-    opacity: 0.8; /* 預設稍微暗一點，比較有質感 */
+    top: 0; left: 0;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* --- 文字覆蓋層 (滑鼠移上去才顯示) --- */
+/* Hover 效果 */
 .overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    
+    inset: 0; /* top/left/right/bottom: 0 的縮寫 */
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    padding: 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* 文字在下方 */
-    padding: 2rem;
-    box-sizing: border-box;
+    justify-content: flex-end;
     
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); /* 底部漸層陰影 */
-    opacity: 0; /* 預設隱藏文字 */
+    opacity: 0;
     transition: opacity 0.3s ease;
+    z-index: 2;
 }
 
-.overlay h2 {
-    color: #fff;
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: bold;
-    transform: translateY(10px);
-    transition: transform 0.3s ease;
-}
+.grid-item:hover .overlay { opacity: 1; }
+.grid-item:hover video, 
+.grid-item:hover img { transform: scale(1.05); }
 
-.overlay span {
-    color: #ccc;
-    font-family: monospace;
-    font-size: 0.9rem;
-    margin-top: 5px;
-    transform: translateY(10px);
-    transition: transform 0.3s ease 0.1s; /* 稍微慢一點出來 */
+.overlay h2 { 
+    color: #fff; font-size: 1.5rem; margin: 0; 
+    transform: translateY(10px); transition: transform 0.3s ease;
 }
-
-/* --- Hover 互動效果 --- */
-.grid-item:hover video,
-.grid-item:hover img {
-    transform: scale(1.05); /* 影片微微放大 */
-    opacity: 1; /* 變亮 */
+.overlay span { 
+    color: #aaa; font-size: 0.9rem; margin-top: 5px; 
+    transform: translateY(10px); transition: transform 0.3s ease 0.1s;
 }
-
-.grid-item:hover .overlay {
-    opacity: 1; /* 顯示文字層 */
-}
-
-.grid-item:hover h2,
-.grid-item:hover span {
-    transform: translateY(0); /* 文字浮上來 */
-}
+.grid-item:hover h2, .grid-item:hover span { transform: translateY(0); }

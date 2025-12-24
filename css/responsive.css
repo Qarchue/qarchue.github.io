@@ -1,60 +1,68 @@
 /* css/responsive.css */
 
 /* =========================================
-   RWD 響應式設計 (手機/平板專用設定)
+   平板與小筆電 (寬度小於 1024px)
    ========================================= */
-
-/* 當螢幕寬度小於 768px (手機/平板直向) */
-@media (max-width: 768px) {
-
-    /* 1. 調整 Hero 影片大小：手機版改寬一點 */
-    .fullscreen-media {
-        width: 95%; 
-        height: 60vh; 
-        border-radius: 12px;
-    }
-
-    /* 2. 調整 Hero 文字與按鈕：縮小字體 */
-    .heading-large {
-        font-size: 3rem;
+@media (max-width: 1024px) {
+    /* Grid 改為 2 欄 */
+    .video-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
     
-    .description-text {
-        font-size: 1rem;
-        padding: 0 20px;
-    }
-
-    .hero-content-overlay {
-        gap: 1rem;
-    }
-
-    /* 3. 調整 Profile 區塊：減少內距 */
-    #profile {
-        padding: 5em 20px; 
-    }
-
-    /* 4. 調整打字機標題：縮小並換行 */
-    .greeting, .identity-group {
-        font-size: 2.2rem;
-        display: flex;
-        flex-direction: column; /* 強制換行 */
-        align-items: flex-start;
-    }
-
-    .typed-cursor {
-        font-size: 2.2rem;
-    }
-
-    /* 5. 調整自我介紹內文 */
-    .bio-text {
-        font-size: 1.1rem;
-        margin-top: 2rem;
+    /* Hero 影片稍微放大 */
+    .fullscreen-media {
+        width: 80%;
+        height: 50vh;
     }
 }
 
-/* 修復手機網址列伸縮導致的高度跳動 */
-@supports (height: 100dvh) {
-    #hero, .fullscreen-media {
-        height: 100dvh;
+/* =========================================
+   手機直向 (寬度小於 768px)
+   ========================================= */
+@media (max-width: 768px) {
+
+    /* 1. Hero 調整：幾乎滿版，高度設為視窗高度 */
+    .fullscreen-media {
+        width: 95%;
+        height: 70vh; /* 避免太滿，留點邊 */
+        border-radius: 16px;
     }
+
+    /* 2. 字體與間距調整 */
+    #profile {
+        padding: 5em 5vw; /* 減少兩側留白 */
+    }
+    
+    .greeting, .identity-group {
+        font-size: 2.5rem;
+        display: flex;
+        flex-direction: column; /* 手機上讓 "我是" 跟名字換行 */
+    }
+
+    .bio-text {
+        font-size: 1.1rem;
+    }
+
+    /* 3. Grid 崩壞修復：改為單欄流 */
+    .video-grid {
+        grid-template-columns: 1fr; /* 只剩 1 欄 */
+        gap: 1rem;
+    }
+
+    /* 強制所有格子都變成 1x1 或 16:9，取消原本的跨欄設定 */
+    .box-1x1, .box-2x1, .box-2x2 {
+        grid-column: auto; /* 取消 span 2 */
+        grid-row: auto;    /* 取消 span 2 */
+        aspect-ratio: 16 / 9; /* 手機上統一變成橫向長方形比較好閱讀 */
+    }
+    
+    /* 針對主要專案 (原本 2x2 的) 可以保持正方形讓它顯眼一點 */
+    .box-2x2 {
+        aspect-ratio: 1 / 1;
+    }
+}
+
+/* 修復手機瀏覽器網址列伸縮導致的跳動 */
+@supports (height: 100dvh) {
+    #hero { height: 100dvh; }
 }

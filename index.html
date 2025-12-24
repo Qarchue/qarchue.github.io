@@ -4,33 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qarchue - 個人作品集</title>
+    
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/style2.css">
+    
+    <link rel="stylesheet" href="css/style.css">  <link rel="stylesheet" href="css/style2.css"> <link rel="stylesheet" href="css/responsive.css">
+
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/motion@10.18.0/dist/motion.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/typing.js"></script>
+    <script src="js/script.js" defer></script> <script src="js/typing.js" defer></script>
 </head>
 <body>
 
-    <section id="hero" class="hero-section">
-        
+    <section id="hero">
         <img id="hero-static-image" class="fullscreen-media" src="final-frame.png" alt="Hero Background">
-
-        <video id="hero-video" class="fullscreen-media" autoplay muted playsinline onended="onVideoEnded()">
+        <video id="hero-video" class="fullscreen-media" autoplay muted playsinline>
             <source src="intro.mp4" type="video/mp4">
         </video>
-
+        
+        <div id="hero-content" class="hero-content-overlay hidden">
+            </div>
     </section>
 
-
-    <main id="profile" class="profile-section">
-            
+    <main id="profile">
         <div class="content-container">
             <h2 class="greeting">你好,</h2>
-            
             <h2 class="identity-group">
                 <span>我是</span>
                 <span id="typed-output" class="gradient-text"></span>
@@ -45,7 +43,6 @@
         </div>
 
         <div class="grid-container">
-            
             <div class="video-grid">
                 
                 <a href="https://github.com/Qarchue/LLM_gpt" target="_blank" class="grid-item box-2x2">
@@ -105,7 +102,6 @@
             </div>
         </div>
     </main>
-
 
 </body>
 </html>

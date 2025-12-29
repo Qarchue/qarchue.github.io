@@ -1,15 +1,24 @@
+/* =========================================
+   1. 主要區塊結構 (Layout & Section)
+   ========================================= */
+
 #about {
-    padding: 10em 10vw;
-    color: #fff;  
+    /* 定位與層級 */
+    position: relative;
+    z-index: 10;
+    margin-top: 100vh;
+    min-height: 100vh;
+    box-sizing: border-box;
+
+    /* Flex 佈局 */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    position: relative;
-    z-index: 10;
-    margin-top: 100vh; 
-    min-height: 100vh;
+
+    /* 外觀與間距 */
+    padding: 10em 10vw;
     background-color: #080808;
-    box-sizing: border-box;
+    color: #fff;
 }
 
 .content-container {
@@ -18,64 +27,72 @@
     margin: 0 auto;
 }
 
+/* =========================================
+   2. 文字與排版組件 (Typography & Components)
+   ========================================= */
+
+/* 靜態標題 */
 .greet {
     font-size: 4rem;
     font-weight: 700;
-    margin: 0;
     line-height: 1.2;
+    margin: 0;
 }
 
-
-.introduction{
-    font-weight: 700;
-    margin: 0;
-    line-height: 1.2;
-    flex-direction: row;
+/* 自我介紹容器 (Flex) */
+.introduction {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     align-items: baseline;
-
-    gap: 0.2em; 
+    
     width: 100%;
-}
+    gap: 0.2em;
 
-
-.fluid-text {
-    font-size: clamp(1.6rem, 6vw, 4rem);
     font-weight: 700;
     line-height: 1.2;
+    margin: 0;
 }
 
-.identity {
-    align-items: flex-start;
-    white-space: nowrap;
-    display: inline-block;
-}
-
-.typed-cursor {
-    color: #ff00ff;
-    font-size: 1em; 
-    font-size: clamp(0.8em, 6vw, 4rem);
-    font-weight: 100;
-    vertical-align: 0%;
-    margin-left: 1px; 
-}
-
+/* 句號微調 */
 .introduction span:last-child {
     margin-left: -0.2em;
 }
 
+/* 流體文字 (Clamp) */
+.fluid-text {
+    font-size: clamp(1.8rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1.2;
+}
 
+/* 名字包裝層 */
+.identity {
+    display: inline-block;
+    align-items: flex-start;
+    white-space: nowrap;
+}
 
+/* 打字機游標 */
+.typed-cursor {
+    color: #ff00ff;
+    font-size: 1em; /* 這裡保留你原本寫的兩行，沒動 */
+    font-size: clamp(0.8em, 6vw, 4rem);
+    font-weight: 100;
+    vertical-align: 0%;
+    margin-left: 1px;
+}
+
+/* 漸層文字特效 */
 .gradient-text {
+    display: inline-block;
     background-image: var(--accent-gradient, linear-gradient(45deg, #6500ff, #ff00ff));
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
-    display: inline-block;
 }
 
-
+/* 下方簡介內文 */
 .intro-text {
     margin-top: 3rem;
     font-size: 1.5rem;
@@ -83,16 +100,23 @@
     line-height: 1.8;
 }
 
+/* =========================================
+   3. 媒體查詢 (RWD Media Queries)
+   ========================================= */
+
+/* 平板尺寸 */
 @media (max-width: 1068px) {
     .intro-text {
         font-size: 1.3rem;
     }
 }
 
+/* 手機尺寸 (主要調整區) */
 @media (max-width: 734px) {
     #about {
-        padding: 6em clamp(0.5vw, 6vw, 5vw);
+        padding: 6em clamp(0.3vw, 4vw, 5vw);
     }
+
     #iam {
         display: block;
         width: 100%;
@@ -108,20 +132,19 @@
     .introduction span:last-child {
         margin-left: clamp(0.05em, 0.1em, 0.1em);
     }
+    
     .identity span:last-child {
         margin-left: -0.2em;
     }
 
     .intro-text {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
-
 }
 
+/* 小螢幕微調 */
 @media (max-width: 480px) {
-
     .intro-text {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
-
 }

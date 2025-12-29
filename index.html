@@ -3,37 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qarchue - 個人作品集</title>
+    <title>Qarchue個人網站</title>
     
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/base.css">
-    
-    <link rel="stylesheet" href="css/style.css">  <link rel="stylesheet" href="css/style2.css"> <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/welcome_hero.css">
+    <link rel="stylesheet" href="css/style2.css"> 
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/responsive.css">
 
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/motion@10.18.0/dist/motion.js"></script>
-    <script src="js/script.js" defer></script> <script src="js/typing.js" defer></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/hero.js" defer></script> 
+    <script src="js/typing.js" defer></script>
 </head>
 <body>
+    <nav id="navbar" class="hidden-nav">
+        <div class="nav-container">
+            <span class="nav-logo">Qarchue</span>
+            <ul class="nav-links">
+                <li><a href="#hero" onclick="scrollToTop()">首頁</a></li>
+                <li><a href="https://github.com/Qarchue" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
 
     <section id="hero">
         <img id="hero-static-image" class="fullscreen-media" src="final-frame.png" alt="Hero Background">
         <video id="hero-video" class="fullscreen-media" autoplay muted playsinline>
             <source src="intro.mp4" type="video/mp4">
         </video>
-        
         <div id="hero-content" class="hero-content-overlay hidden">
-            </div>
+            <h2 class="greeting">你好,</h2>
+        </div>
     </section>
+
 
     <main id="profile">
         <div class="content-container">
             <h2 class="greeting">你好,</h2>
             <h2 class="identity-group">
-                <span>我是</span>
-                <span id="typed-output" class="gradient-text"></span><span class="gradient-text">。</span>
+                <span>我是</span><span id="typed-output" class="gradient-text"></span><span class="gradient-text">。</span>
             </h2>
-
             <div class="bio-text">
                 <p>目前就讀於正修科技大學資訊工程系。</p>
                 <p>熱衷於探索各種程式語言與技術，並將它們應用於實際專案中，</p>
@@ -43,7 +55,7 @@
 
         <div class="grid-container">
             <div class="video-grid">
-                
+  
                 <a href="https://github.com/Qarchue/LLM_gpt" target="_blank" class="grid-item box-2x2">
                     <video autoplay loop muted playsinline poster="preview1.jpg">
                         <source src="video1.mp4" type="video/mp4">

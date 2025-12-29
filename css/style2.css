@@ -9,6 +9,15 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+    position: relative;
+    z-index: 10;
+    
+    margin-top: 100vh; 
+    min-height: 100vh;
+    
+    background-color: #080808; /* 與 style2 一致的深黑背景 */
+    box-sizing: border-box;
 }
 
 .content-container {
@@ -127,7 +136,6 @@
 .typed-cursor {
     color: #ff00ff;   /* 紫色 (維持原樣) */
     
-    /* ★關鍵：讓游標變小 */
     /* 1em = 跟旁邊的字一樣大。設為 0.6em 就只會剩下 60% 大小 */
     font-size: 1em; 
 
@@ -135,7 +143,7 @@
     font-weight: 100; 
 
     /* 因為變小了，位置會跑掉，用這個把它「提」起來對齊文字中心 */
-    vertical-align: 10%; /* 可以微調這個趴數來對齊 */
+    vertical-align: 0%; /* 可以微調這個趴數來對齊 */
     
     /* 讓它不要佔太多橫向空間，往左邊擠一點 */
     margin-left: 1px; 

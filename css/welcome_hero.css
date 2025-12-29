@@ -1,0 +1,66 @@
+#hero {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+
+    background-color: #696969;
+    overflow: hidden;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    will-change: opacity;
+}
+
+.fullscreen-media {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    width: 60%;
+    height: 60%;
+    
+    object-fit: cover;
+    border-radius: 24px;
+
+}
+
+#hero-static-image { z-index: 1; }
+#hero-video { z-index: 2; }
+
+
+
+.hero-content-overlay {
+    /* 佈局 (Layout) */
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    /* 動畫過渡 (Transition) - 定義在這裡，不管變成什麼狀態都有動畫 */
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* 2. 狀態：隱藏 (Hidden) - 初始狀態 */
+.hero-content-overlay.hidden {
+    opacity: 0;
+    transform: translateY(20px); /* 稍微往下沉 */
+    pointer-events: none;        /* 隱藏時滑鼠穿透，不擋點擊 */
+}
+
+/* 3. 狀態：顯示 (Visible) - JS 觸發 */
+.hero-content-overlay.visible {
+    opacity: 1;
+    transform: translateY(0);    /* 浮回原位 */
+    pointer-events: auto;        /* 恢復滑鼠互動 */
+}

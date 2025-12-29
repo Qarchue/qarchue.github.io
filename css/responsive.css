@@ -24,24 +24,15 @@
     /* 1. Hero 調整：幾乎滿版，高度設為視窗高度 */
     .fullscreen-media {
         width: 100%;
-        height: 70vh; /* 避免太滿，留點邊 */
+        height: auto; /* 避免太滿，留點邊 */
         border-radius: 16px;
     }
 
-    #hero-video {
-        width: 100%;
-        height: auto;
-    }
-
-    #hero-static-image {
-        width: 100px;
-        height: auto;
-    }
     /* 讓 "我是" 自己變成一行 */
     .identity-group span:first-child {
-        display: block;  /* 變成區塊元素，強迫換行 */
-        width: 100%;     /* 佔滿寬度 */
-        margin-bottom: 0px; /* 如果覺得兩行隔太開，可以調整這個數字，例如 -10px */
+        display: block;
+        width: 100%;
+        margin-bottom: 0px;
     }
 
     /* 確保後面的字 (名字 + 句號) 乖乖待在同一行 */

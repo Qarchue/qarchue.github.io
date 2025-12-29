@@ -118,3 +118,10 @@
 
 }
 
+@media (max-width: 480px) {
+
+    .intro-text {
+        font-size: 0.8rem;
+    }
+
+}

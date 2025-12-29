@@ -1,0 +1,120 @@
+#about {
+    padding: 10em 10vw;
+    color: #fff;  
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    z-index: 10;
+    margin-top: 100vh; 
+    min-height: 100vh;
+    background-color: #080808;
+    box-sizing: border-box;
+}
+
+.content-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.greet {
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+}
+
+
+.introduction{
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+
+    gap: 0.2em; 
+    width: 100%;
+}
+
+
+.fluid-text {
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.identity {
+    align-items: flex-start;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.typed-cursor {
+    color: #ff00ff;
+    font-size: 1em; 
+    font-size: clamp(0.6em, 6vw, 4rem);
+    font-weight: 100;
+    vertical-align: 0%;
+    margin-left: 1px; 
+}
+
+.introduction span:last-child {
+    margin-left: -0.2em;
+}
+
+
+
+.gradient-text {
+    background-image: var(--accent-gradient, linear-gradient(45deg, #6500ff, #ff00ff));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+
+.intro-text {
+    margin-top: 3rem;
+    font-size: 1.5rem;
+    color: #cccccc;
+    line-height: 1.8;
+}
+
+@media (max-width: 1068px) {
+    .intro-text {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 734px) {
+    #about {
+        padding: 6em clamp(0.5vw, 6vw, 5vw);
+    }
+    #iam {
+        display: block;
+        width: 100%;
+        font-size: 4rem;
+        margin-bottom: 0;
+    }
+    
+    .introduction {
+        gap: 0;
+        line-height: 0.5;
+    }
+
+    .introduction span:last-child {
+        margin-left: clamp(0.05em, 0.1em, 0.1em);
+    }
+    .identity span:last-child {
+        margin-left: -0.2em;
+    }
+
+    .intro-text {
+        font-size: 1.1rem;
+    }
+
+}
+

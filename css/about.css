@@ -138,13 +138,13 @@
     }
 
     .intro-text {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 }
 
 /* 小螢幕微調 */
 @media (max-width: 480px) {
     .intro-text {
-        font-size: 1rem;
+        font-size: 0.7rem;
     }
 }

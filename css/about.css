@@ -19,7 +19,7 @@
 
     padding: 
             clamp(3em, 15vh, 8em) /* 上下 (可自行調整) */
-            clamp(1rem, 12vw - 1.5rem, 10rem); /* 左右 (關鍵修改) */
+            clamp(0.1rem, 12vw - 1.5rem, 10rem); /* 左右 (關鍵修改) */
 }
 
 .content-container {
@@ -104,13 +104,26 @@
     color: transparent;
 }
 
-/* 下方簡介內文 */
-.intro-text {
-    margin-top: 3rem;
-    font-size: 1.5rem;
+
+.intro-text p {
+    white-space: nowrap;
+    
+    font-size: clamp(0.1rem, 3vw, 1.5rem);
+
+    margin-top: 2rem;
     color: #cccccc;
+
     line-height: 1.8;
+    width: 100%;
 }
+
+
+.intro-text {
+    width: 100%;
+    /* 確保容器本身不會限制文字延伸 */
+    max-width: 100%; 
+}
+
 
 /* =========================================
    3. 媒體查詢 (RWD Media Queries)
@@ -118,9 +131,7 @@
 
 /* 平板尺寸 */
 @media (max-width: 1068px) {
-    .intro-text {
-        font-size: 1.3rem;
-    }
+
 }
 
 /* 手機尺寸 (主要調整區) */
@@ -139,14 +150,10 @@
     }
 
 
-    .intro-text {
-        font-size: 1rem;
-    }
+
 }
 
 /* 小螢幕微調 */
 @media (max-width: 480px) {
-    .intro-text {
-        font-size: 0.7rem;
-    }
+
 }

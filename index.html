@@ -10,12 +10,14 @@
     <link rel="stylesheet" href="css/welcome_hero.css">
     <link rel="stylesheet" href="css/about.css"> 
     <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/workgrid.css">
+    <link rel="stylesheet" href="css/wrapper.css">
 
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script src="js/navbar.js" defer></script>
     <script src="js/hero.js" defer></script> 
     <script src="js/typing.js" defer></script>
+    <script src="js/workgrid.js" defer></script>
 
     
 </head>
@@ -41,28 +43,37 @@
         </div>
     </section>
 
-
-    <main id="about">
-        <div class="content-container">
-            <h2 class="greet">你好,</h2>
-            <h2 class="introduction">
-                <span id="iam" class="fluid-text">我是</span>
-                <span class="identity">
-                    <span id="typed-output" class="gradient-text fluid-text"></span><span id="period" class="gradient-text fluid-text">。</span>
-                </span>
-            </h2>
-            <div class="intro-text">
-                <p>
-                    目前就讀於正修科技大學資訊工程系。<br/>
-                    熱衷於探索各種程式語言與技術，並將它們應用於實際專案中，<br/>
-                    我相信程式設計不僅是一種技能，更是一種創造力的展現。
-                </p>
+    <div class="wrapper">
+        <section id="about">
+            <div class="content-container">
+                <h2 class="greet">你好,</h2>
+                <h2 class="introduction">
+                    <span id="iam" class="fluid-text">我是</span>
+                    <span class="identity">
+                        <span id="typed-output" class="gradient-text fluid-text"></span><span id="period" class="gradient-text fluid-text">。</span>
+                    </span>
+                </h2>
+                <div class="intro-text">
+                    <p>
+                        目前就讀於正修科技大學資訊工程系。<br/>
+                        熱衷於探索各種程式語言與技術，並將它們應用於實際專案中，<br/>
+                        我相信程式設計不僅是一種技能，更是一種創造力的展現。
+                    </p>
+                </div>
+            </div>     
+        </section>
+        <div class="grid-container">
+            <div class="item-1 box-4x4">1</div>
+            <div class="item-2 box-1x2">2</div>
+            <div class="item-3 box-1x1">3</div>
+            <div class="item-4 box-1x1">4</div>
+            <div class="item-5 box-1x1">5</div>
+            <div class="item-6 box-1x1">6</div>
+            <div class="item-7 box-1x1">7</div>
+            <div class="item-8 box-1x1">8</div>
             </div>
-        </div>
-
-
-    </main>
-
+        
+    </div>
 </body>
 </html>
 

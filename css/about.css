@@ -2,24 +2,17 @@
    1. 主要區塊結構 (Layout & Section)
    ========================================= */
 
-#about {
-    /* 定位與層級 */
-    position: relative;
-    z-index: 10;
-    margin-top: 100vh;
-    min-height: 100vh;
-    box-sizing: border-box;
 
-    /* Flex 佈局 */
+#about {
+    /* 這裡只留排版邏輯 */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
-    background-color: #080808;
-
-    padding: 
-            clamp(3em, 15vh, 8em) /* 上下 (可自行調整) */
-            clamp(0.1rem, 12vw - 1.5rem, 10rem); /* 左右 (關鍵修改) */
+    /* 使用繼承自 wrapper 的變數，保持原本的縮排 */
+    padding: var(--pad-v) var(--pad-h);
+    
+    /* 為了美觀，可以讓下方 padding 小一點，因為接著就是作品集 */
+    padding-bottom: 5vh; 
 }
 
 .content-container {
@@ -111,16 +104,14 @@
     font-size: clamp(0.1rem, 3vw, 1.5rem);
 
     margin-top: 2rem;
-    color: #cccccc;
+    color: #afafaf;
 
     line-height: 1.8;
     width: 100%;
 }
 
-
 .intro-text {
     width: 100%;
-    /* 確保容器本身不會限制文字延伸 */
     max-width: 100%; 
 }
 

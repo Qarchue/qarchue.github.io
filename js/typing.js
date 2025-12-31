@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
             
             loop: true,      // 是否無限循環
             showCursor: true, // 顯示閃爍游標
-            cursorChar: '|',  // 游標樣式
+            cursorChar: '│',  // 游標樣式
         });
     }
 });

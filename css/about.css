@@ -15,16 +15,17 @@
     flex-direction: column;
     align-items: flex-start;
 
-    /* 外觀與間距 */
-    padding: 10em 10vw;
     background-color: #080808;
-    color: #fff;
+
+    padding: 
+            clamp(3em, 15vh, 8em) /* 上下 (可自行調整) */
+            clamp(1rem, 12vw - 1.5rem, 10rem); /* 左右 (關鍵修改) */
 }
 
 .content-container {
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 0;
 }
 
 /* =========================================
@@ -34,7 +35,7 @@
 /* 靜態標題 */
 .greet {
     font-size: 4rem;
-    font-weight: 700;
+    font-weight: 900;
     line-height: 1.2;
     margin: 0;
 }
@@ -47,17 +48,12 @@
     align-items: baseline;
     
     width: 100%;
-    gap: 0.2em;
+    gap: 0em;
 
-    font-weight: 700;
     line-height: 1.2;
     margin: 0;
 }
 
-/* 句號微調 */
-.introduction span:last-child {
-    margin-left: -0.2em;
-}
 
 /* 流體文字 (Clamp) */
 .fluid-text {
@@ -65,6 +61,7 @@
     font-weight: 700;
     line-height: 1.2;
 }
+
 
 /* 名字包裝層 */
 .identity {
@@ -75,12 +72,27 @@
 
 /* 打字機游標 */
 .typed-cursor {
+    display: inline-block;
+    
+    width: 0;
+    
+    overflow: visible;
+    
+    /* 4. 避免換行問題，強制不換行 */
+    white-space: nowrap;
+
+    /* --- 原有的視覺樣式 --- */
     color: #ff00ff;
-    font-size: 1em; /* 這裡保留你原本寫的兩行，沒動 */
-    font-size: clamp(0.8em, 6vw, 4rem);
-    font-weight: 100;
-    vertical-align: 0%;
-    margin-left: 1px;
+    /* 這裡使用 inherit 繼承父層流體文字大小，或保留你的 clamp 設定 */
+    font-size: clamp(1.8rem, 6vw, 4rem); 
+    /* 給之後的自己看的：
+       1. clamp(400, ..., 900) -> 限制最細 400，最粗 900。
+       2. 100vw / 1px -> 這會把 "寬度 px" 轉為 "純數字" (例如 1000)。
+       3. * 0.6 -> 係數調整。當螢幕寬 1000px 時，粗細就是 600。
+    */
+    font-weight: clamp(400, calc(100vw / 1px * 0.3), 500);
+    
+    vertical-align: baseline; 
 }
 
 /* 漸層文字特效 */
@@ -113,29 +125,19 @@
 
 /* 手機尺寸 (主要調整區) */
 @media (max-width: 734px) {
-    #about {
-        padding: 6em clamp(0.3vw, 4vw, 5vw);
-    }
 
     #iam {
-        display: block;
         width: 100%;
         font-size: 4rem;
         margin-bottom: 0;
     }
     
-    .introduction {
-        gap: 0;
-        line-height: 0.5;
+.introduction {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0rem; /* 子元素間距 */
     }
 
-    .introduction span:last-child {
-        margin-left: clamp(0.05em, 0.1em, 0.1em);
-    }
-    
-    .identity span:last-child {
-        margin-left: -0.2em;
-    }
 
     .intro-text {
         font-size: 1rem;

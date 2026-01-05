@@ -22,7 +22,7 @@ body, html {
     background-color: var(--bg-color);
     color: var(--text-primary);
     overflow-x: hidden;
-    /* scroll-behavior: smooth; */
+    scroll-behavior: smooth;
     
 }
 :root {

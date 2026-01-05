@@ -64,8 +64,6 @@
     #hero { height: 100dvh; }
 }
 
-
-
 @media (max-width: 1068px) {
     .fullscreen-media {
         width: 90%;
@@ -79,7 +77,6 @@
         height: auto;
     }
 }
-
 
 @media (max-width: 480px) {
     .fullscreen-media {

@@ -1,3 +1,5 @@
+
+
 /* =========================================
    1. CSS 變數定義
    ========================================= */
@@ -20,6 +22,23 @@ body, html {
     background-color: var(--bg-color);
     color: var(--text-primary);
     overflow-x: hidden;
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
     
+}
+:root {
+    /* 定義變數方便管理 */
+    --main-font: 'Inter', 'Noto Sans TC', sans-serif;
+}
+
+body {
+    font-family: var(--main-font);
+    -webkit-font-smoothing: antialiased; /* Chrome/Safari */
+    -moz-osx-font-smoothing: grayscale;  /* Firefox */
+    
+    /* 3. 優化文字渲染 */
+    text-rendering: optimizeLegibility;
+    
+    /* 消除預設邊距 */
+    margin: 0;
+    padding: 0;
 }

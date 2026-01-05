@@ -58,34 +58,43 @@
 
 /* 名字包裝層 */
 .identity {
-    display: inline-block;
-    align-items: flex-start;
+    display: inline-flex;
+    align-items: center;
     white-space: nowrap;
 }
 
-/* 打字機游標 */
+/* 給之後的自己看的：
+1. clamp(400, ..., 900) -> 限制最細 400，最粗 900。
+2. 100vw / 1px -> 這會把 "寬度 px" 轉為 "純數字" (例如 1000)。
+3. * 0.6 -> 係數調整。當螢幕寬 1000px 時，粗細就是 600。
+*/
+/* .typed-cursor {
+display: inline-block;
+width: 0;
+overflow: visible;
+white-space: nowrap;
+
+font-size: clamp(1.8rem, 6vw, 4rem);
+font-weight: clamp(400, calc(100vw / 1px * 0.3), 500);
+vertical-align: baseline;
+} */
+
 .typed-cursor {
     display: inline-block;
-    
-    width: 0;
-    
-    overflow: visible;
-    
-    /* 4. 避免換行問題，強制不換行 */
-    white-space: nowrap;
 
-    /* --- 原有的視覺樣式 --- */
-    color: #ff00ff;
-    /* 這裡使用 inherit 繼承父層流體文字大小，或保留你的 clamp 設定 */
-    font-size: clamp(1.8rem, 6vw, 4rem); 
-    /* 給之後的自己看的：
-       1. clamp(400, ..., 900) -> 限制最細 400，最粗 900。
-       2. 100vw / 1px -> 這會把 "寬度 px" 轉為 "純數字" (例如 1000)。
-       3. * 0.6 -> 係數調整。當螢幕寬 1000px 時，粗細就是 600。
-    */
-    font-weight: clamp(400, calc(100vw / 1px * 0.3), 500);
+    width: 0.08em;
+    height: 1em;
     
-    vertical-align: baseline; 
+    background-color: #ff00ff;
+    font-size: clamp(1.8rem, 6vw, 4rem);
+
+    vertical-align: 0em;
+    margin-left: 0em;
+    margin-bottom: 0rem;
+}
+
+#period {
+    margin-left: -0.08em;
 }
 
 /* 漸層文字特效 */

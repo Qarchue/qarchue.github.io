@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     const config = {
         amp: 1.8,       // 變形幅度 (固定值)
-        th: 2,          // 觸發閾值 (速度大於此值才變形)
-        stopTh: 1.5,    // 歸零閾值 (速度小於此值回歸平滑)
+        th: 1,          // 觸發閾值 (速度大於此值才變形)
+        stopTh: 0.5,    // 歸零閾值 (速度小於此值回歸平滑)
         rev: true,      // 反轉方向
         idleDir: 1,     // 置頂閒置方向
         tension: 0.18,  // 物理張力

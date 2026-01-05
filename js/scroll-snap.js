@@ -2,11 +2,13 @@ gsap.registerPlugin(ScrollToPlugin);
 
 document.addEventListener("DOMContentLoaded", () => {
     const config = {
-        threshold: 300,      // 蓄力總能量
-        visualFactor: 0.15,  // 🛑 這是最大位移百分比 (0.45 = 45vh)
+        threshold: 250,
+        visualFactor: 0.20,
         duration: 0.9,
         ease: "expo.out",
-        resetDelay: 250
+        resetDelay: 250,
+        //控制曲線：越小則前段越快、後段越慢 (建議 0.3 ~ 0.5)
+        curveExp: 0.25 
     };
 
     const state = {
@@ -22,6 +24,22 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener('resize', updateCoords);
 
     const View = {
+        renderOffset: (targetZone) => {
+            const baseY = targetZone === 1 ? 0 : state.aboutTop;
+
+            const progress = Math.min(Math.abs(state.energy) / config.threshold, 1.1);
+            
+            // 非線性公式：y = x ^ curveExp
+            // 當 x=0.1, y=0.1^0.35 ≈ 0.44 (進度 10% 時畫面已出來 44%)
+            // 當 x=0.9, y=0.9^0.35 ≈ 0.96 (進度 90% 時畫面出來 96%，後段極慢)
+            const curve = Math.pow(progress, config.curveExp);
+            
+            const maxDisplacement = window.innerHeight * config.visualFactor;
+            const direction = state.energy > 0 ? 1 : -1;
+            
+            window.scrollTo(0, baseY + (direction * curve * maxDisplacement));
+        },
+
         jump: (targetZone) => {
             state.isLocked = true;
             state.energy = 0;
@@ -36,28 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     setTimeout(() => state.isLocked = false, 50);
                 }
             });
-        },
-
-        // 🔥 核心重寫：非線性百分比位移
-        renderOffset: (targetZone) => {
-            const baseY = targetZone === 1 ? 0 : state.aboutTop;
-            
-            // 1. 計算目前的能量進度 (0 到 1)
-            // 我們容許進度稍微超過 1 (到 1.1)，產生一點點過度拉伸的張力感
-            const progress = Math.abs(state.energy) / config.threshold;
-            
-            // 2. 🛑 非線性轉換 (核心)
-            // 使用 Math.log1p(x) 或 Math.pow(x, 0.5)
-            // 這裡推薦使用 Power 函數，0.4 次方會產生「起步極快、後段極慢」的效果
-            const curve = Math.pow(Math.min(progress, 1.1), 0.4); 
-            
-            // 3. 將曲線映射到目標百分比
-            // 位移量 = 螢幕高度 * 預設百分比 * 非線性曲線
-            const maxDisplacement = window.innerHeight * config.visualFactor;
-            const direction = state.energy > 0 ? 1 : -1;
-            const visualMove = direction * curve * maxDisplacement;
-            
-            window.scrollTo(0, baseY + visualMove);
         },
 
         bounceBack: () => {

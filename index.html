@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/workgrid.css">
     <link rel="stylesheet" href="css/wrapper.css">
+    <link rel="stylesheet" href="css/scroll-indicator.css">
 
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script src="js/navbar.js" defer></script>
@@ -19,7 +20,16 @@
     <script src="js/typing.js" defer></script>
     <script src="js/workgrid.js" defer></script>
 
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+    <script src="js/scroll-snap.js" defer></script>
+    <script src="js/scroll-indicator.js" defer></script>
+    <script src="js/indicator_drag.js" defer></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav id="navbar" class="hidden-nav">
@@ -32,7 +42,6 @@
         </div>
     </nav>
 
-
     <section id="hero">
         <img id="hero-static-image" class="fullscreen-media" src="final-frame.png" alt="Hero Background">
         <video id="hero-video" class="fullscreen-media" autoplay muted playsinline>
@@ -44,7 +53,13 @@
     </section>
 
     <div class="wrapper">
-        <section id="about">
+        <div id="scroll-handle" class="scroll-indicator">
+            <svg width="40px" height="24px" viewBox="0 0 24 24">
+                <path id="indicator-path" d="M 2,12 L 12,12 L 22,12" />
+            </svg>
+        </div>
+
+        <section id="about" class="about">
             <div class="content-container">
                 <h2 class="greet">你好,</h2>
                 <h2 class="introduction">

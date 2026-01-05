@@ -1,0 +1,90 @@
+.scroll-indicator {
+    position: absolute;
+    z-index: 20;
+    
+    top: -3.6rem; 
+    left: 50%;
+    transform: translateX(-50%);
+    
+    opacity: 0;
+    transition: opacity 1.5s ease;
+
+    overflow: visible;
+    pointer-events: auto; 
+    cursor: grab;
+}
+
+.scroll-indicator.visible {
+    opacity: 1;
+}
+
+.scroll-indicator svg {
+    width: 7.25rem; 
+    height: 3.75rem;
+    
+    display: block; 
+    overflow: visible;
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+@keyframes whole-bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 0.8rem); }
+}
+
+.scroll-indicator.is-idling {
+    animation: whole-bounce 1s ease-in-out infinite;
+    
+}
+
+@media (max-width: 1068px) {
+    .scroll-indicator svg {
+        width: 6rem; 
+        height: 3rem;
+    }
+    .scroll-indicator {
+        top: -3rem;
+    }
+}
+
+@media (max-width: 734px) {
+    .scroll-indicator svg {
+        width: 4.75rem; 
+        height: 2.25rem;
+    }
+    .scroll-indicator {
+        top: -2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .scroll-indicator svg {
+        width: 40px; 
+        height: 24px;
+    }
+    .scroll-indicator {
+        top: -2rem;
+    }
+}
+
+#indicator-path {
+    fill: none;
+    stroke: #a3a3a3;
+    stroke-width: 5px;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    
+    vector-effect: non-scaling-stroke; 
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+    transition: stroke 0.3s ease, stroke-width 0.3s ease, filter 0.3s ease;
+}
+
+.scroll-indicator:hover #indicator-path {
+    stroke: #5d5d5d;
+    stroke-width: 6px;
+}
+
+.scroll-indicator:active {
+    cursor: grabbing;
+}

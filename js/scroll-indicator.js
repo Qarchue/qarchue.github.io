@@ -1,14 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
     const config = {
         amp: 1.8,
-        th: 2,
-        stopTh: 1.5,
+        th: 1,
+        stopTh: 0.6,
         rev: true,
         idleDir: 1,
         tension: 0.18,  
         damping: 0.70,  
         idleTime: 3000,
-        
         morphInterval: 2000 
     };
 
@@ -103,7 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const force = (state.target - state.current) * config.tension;
         state.vel = (state.vel + force) * config.damping;
         state.current += state.vel;
-
 
         if (Math.abs(state.current) > 0.001 || Math.abs(state.target) > 0.001 || Math.abs(state.vel) > 0.001) {
             const cy = 12 + state.current;

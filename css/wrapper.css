@@ -6,18 +6,18 @@
     min-height: 100vh;
     box-sizing: border-box;
 
-    /* backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 
-    background-color: #080808;
+    /* background-color: #080808; */
 
-    /* background-image: 
+    background-image: 
         radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
         linear-gradient(to bottom, 
             rgba(8, 8, 8, 0.4) 0%,
             rgba(8, 8, 8, 1) 400px, 
             #080808 100%             
-        ); */
+        );
 
     background-size: 24px 24px, 100% 100%; 
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -27,26 +27,6 @@
 
     background-position: var(--pad-h) var(--pad-v), 0 0;
 
-    /* =========================================
-       🚀 效能優化補丁 (Performance Boost) <- 謝謝gemini
-       ========================================= */
-
-    /* 1. 獨立合成層 (Promote to Layer) */
-    /* 把這個巨大容器變成一張獨立的顯卡貼圖，捲動時不重繪整個網頁 */
-    transform: translate3d(0, 0, 0);
-
-    /* 2. 預告變化 */
-    /* 告訴瀏覽器：這個東西的位置(scroll)和濾鏡會一直變 */
-    will-change: transform, backdrop-filter;
-
-    /* 3. 隱藏背面 (防閃爍) */
-    /* 這是 Windows Chrome 捲動時去除微小抖動的神技 */
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-
-    /* 4. 渲染隔離 (Containment) */
-    /* 告訴瀏覽器：這個容器裡的排版變化，盡量不要影響到外面，反之亦然 */
-    /* 這能減少 Reflow (重排) 的範圍 */
     contain: layout style; 
     
     overflow: visible;

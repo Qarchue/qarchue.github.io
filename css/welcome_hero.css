@@ -1,11 +1,15 @@
+/* --- Hero 區塊設定 --- */
 #hero {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    
+    /* 🔴 關鍵修正：解決手機瀏覽器網址列蓋住內容的問題 */
+    height: 100vh;  /* 舊瀏覽器備用 */
+    height: 100svh; /* 使用 "可視範圍高度"，確保不會被下方工具列擋住 */
+    
     z-index: 1;
-
     background-color: #000000;
     overflow: hidden;
     
@@ -16,24 +20,26 @@
     will-change: opacity;
 }
 
+/* --- 圖片與影片 (已合併重複代碼) --- */
 .fullscreen-media {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     
-    width: 80%;
+    /* RWD 寬度邏輯：手機滿版 (90%)，電腦版限制最大 700px */
+    width: min(90%, 700px); 
     height: auto;
     
     object-fit: cover;
-
+    z-index: 1;
 }
 
 #hero-static-image { z-index: 1; }
 #hero-video { z-index: 2; }
 
 
-
+/* --- 內容覆蓋層 --- */
 .hero-content-overlay {
     position: absolute;
     z-index: 3;
@@ -60,44 +66,38 @@
     pointer-events: auto;
 }
 
+
+/* --- 標語 Motto (已合併重複代碼) --- */
 .motto {
     position: relative;
     z-index: 10;
-
     font-weight: 700;
-    
     color: #444444; 
-    
     text-align: center;
-    
     letter-spacing: 0.1em;
     
     margin-left: auto;
     margin-right: auto;
-}
 
-/* @supports (height: 100dvh) {
-    #hero { height: 100dvh; }
-} */
+    /* RWD 間距與字體大小 */
+    /* 間距隨寬度縮放：最小 40px，最大 150px (解決手機版太遠的問題) */
+    margin-top: clamp(40px, 12vw, 150px);
 
-
-
-/* 圖片與影片 */
-.fullscreen-media {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    width: min(90%, 700px); 
-    
-    height: auto;
-    object-fit: cover;
-    z-index: 1;
-}
-
-.motto {
-    margin-top: clamp(40px, 14vw, 110px);
-
+    /* 字體隨寬度縮放 */
     font-size: clamp(1.2rem, 4vw, 3rem);
+}
+
+
+/* --- 🟢 新增：修正箭頭在手機上被蓋住的問題 --- */
+/* 請確保你的箭頭 HTML 有 class="scroll-indicator" */
+.scroll-indicator {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    cursor: grab;
+    
+    /* 核心修正：使用 env(safe-area-inset-bottom) 避開 iPhone 底部黑條 */
+    /* 並且使用 30px 作為基礎距離 */
+    bottom: calc(30px + env(safe-area-inset-bottom)); 
 }

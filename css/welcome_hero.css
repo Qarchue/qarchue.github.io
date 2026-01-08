@@ -99,5 +99,5 @@
     
     /* 核心修正：使用 env(safe-area-inset-bottom) 避開 iPhone 底部黑條 */
     /* 並且使用 30px 作為基礎距離 */
-    bottom: calc(30px + env(safe-area-inset-bottom)); 
+    bottom: calc(300px + env(safe-area-inset-bottom)); 
 }

@@ -8,8 +8,7 @@
 
     height: 100vh;  /* 舊瀏覽器備用 */
     height: 100svh; /* 使用 "可視範圍高度"，確保不會被下方工具列擋住 */
-    
-    z-index: 1;
+
     background-color: #000000;
     overflow: hidden;
     
@@ -20,7 +19,6 @@
     will-change: opacity;
 }
 
-/* --- 圖片與影片 (已合併重複代碼) --- */
 .fullscreen-media {
     position: absolute;
     top: 50%;
@@ -32,13 +30,21 @@
     height: auto;
     
     object-fit: cover;
-    z-index: 1;
+
 }
 
 #hero-static-image { z-index: 1; }
 #hero-video { z-index: 2; }
 
+.fullscreen-media.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
 
+.fullscreen-media.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
 /* --- 內容覆蓋層 --- */
 .hero-content-overlay {
     position: absolute;

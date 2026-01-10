@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {   
     const video = document.getElementById('hero-video');
+    const staticImage = document.getElementById('hero-static-image');
     const content = document.getElementById('hero-content');
     const indicator = document.getElementById('scroll-handle');
 
@@ -16,7 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
             video.remove();
             content.classList.remove('hidden');
             content.classList.add('visible');
-            
+            staticImage.classList.remove('hidden');
+            staticImage.classList.add('visible');
+
             indicator.classList.add('visible');
         });
     }

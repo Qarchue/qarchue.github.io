@@ -1,23 +1,15 @@
-/* --- Hero 區塊設定 --- */
+
 #hero {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 0; left: 0;
     width: 100vw;
-    
-
-    height: 100vh;  /* 舊瀏覽器備用 */
-    height: 100svh; /* 使用 "可視範圍高度"，確保不會被下方工具列擋住 */
-
+    height: 100vh;
+    height: 100svh;
     background-color: #000000;
     overflow: hidden;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
     will-change: opacity;
 }
+
 
 .fullscreen-media {
     position: absolute;
@@ -25,85 +17,84 @@
     left: 50%;
     transform: translate(-50%, -50%);
     
-    /* RWD 寬度邏輯：手機滿版 (90%)，電腦版限制最大 700px */
-    width: min(90%, 700px); 
-    height: auto;
-    
-    object-fit: cover;
 
+    width: 700px; 
+    
+    height: auto;
+    object-fit: cover;
 }
 
 #hero-static-image { z-index: 1; }
 #hero-video { z-index: 2; }
+.fullscreen-media.hidden { opacity: 0; pointer-events: none; }
+.fullscreen-media.visible { opacity: 1; pointer-events: auto; }
 
-.fullscreen-media.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
 
-.fullscreen-media.visible {
-    opacity: 1;
-    pointer-events: auto;
-}
-/* --- 內容覆蓋層 --- */
 .hero-content-overlay {
     position: absolute;
     z-index: 3;
-    width: 100%;
-    height: 100%;
+    
+    /* 1. 定位與圖片完全重疊 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* 2. 寬度與圖片完全同步 (電腦版) */
+    width: 700px; 
+    
+    container-type: inline-size;
+    aspect-ratio: 16/9; 
     
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* 垂直置中 (圖片中心點) */
+    align-items: center;     /* 水平置中 */
     
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
-.hero-content-overlay.hidden {
-    opacity: 0;
-    transform: translateY(20px);
-    pointer-events: none;
-}
-
-.hero-content-overlay.visible {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
+.hero-content-overlay.hidden { opacity: 0; transform: translate(-50%, -50%) translateY(20px); pointer-events: none; }
+.hero-content-overlay.visible { opacity: 1; transform: translate(-50%, -50%) translateY(0); pointer-events: auto; }
 
 
-/* --- 標語 Motto (已合併重複代碼) --- */
 .motto {
     position: relative;
     z-index: 10;
     font-weight: 700;
     color: #444444; 
     text-align: center;
-    letter-spacing: 0.1em;
-    
     margin-left: auto;
     margin-right: auto;
+    
+    width: 100%; 
+    margin-top: 15%; 
+    line-height: 1;
+    white-space: nowrap;
 
-    /* RWD 間距與字體大小 */
-    /* 間距隨寬度縮放：最小 40px，最大 150px (解決手機版太遠的問題) */
-    margin-top: clamp(40px, 12vw, 150px);
+    font-size: 5cqi;   
+}
 
-    /* 字體隨寬度縮放 */
-    font-size: clamp(1.2rem, 4vw, 3rem);
+@media (max-width: 1068px) {
+    .fullscreen-media, 
+    .hero-content-overlay {
+        width: 600px;
+    }
+
+}
+
+@media (max-width: 734px) {
+    .fullscreen-media, 
+    .hero-content-overlay {
+        width: 450px;
+    }
+
 }
 
 
-/* --- 🟢 新增：修正箭頭在手機上被蓋住的問題 --- */
-/* 請確保你的箭頭 HTML 有 class="scroll-indicator" */
-.scroll-indicator {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    cursor: grab;
-    
-    /* 核心修正：使用 env(safe-area-inset-bottom) 避開 iPhone 底部黑條 */
-    /* 並且使用 30px 作為基礎距離 */
-    bottom: calc(30px + env(safe-area-inset-bottom)); 
+@media (max-width: 480px) {
+    .fullscreen-media, 
+    .hero-content-overlay {
+        width: 350px;
+    }
+
 }
